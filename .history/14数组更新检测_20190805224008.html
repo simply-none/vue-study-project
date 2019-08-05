@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组更新检测</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <!-- 数组的变异方法会触发视图的更新：
+    包括：push(),pop(),unshift(),shift(),splice(),sort(),reverse()
+    变异方法：会改变原数组内容
+    数组的非变异方法：不会改变原始数组内容，而是返回一个新的数组：
+    eg:filter(),concat(),slice() -->
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) in items" :key="index">
+                {{ item }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                items: [1, 2, 3, 4, 5]
+            }
+        });
+        // 当使用新数组替换旧数组时，vue为使dom元素得到最大范围的重用而实现了智能启发式方法（高效）
+        app.items = app.items.filter(function (item) {
+            // 返回符合条件的item
+            return item % 2 === 0;
+        });
+    </script>
+</body>
+
+</html>

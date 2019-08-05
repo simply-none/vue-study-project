@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表渲染</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <ul id="app">
+        <template v-for="item in items">
+            <li>{{ item.msg }}</li>
+            <li class="divider" role="presentation">呵呵哒</li>
+        </template>
+    </ul>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                items: [
+                    {msg: "hello"},
+                    {msg: "world"},
+                    {msg: "vue"}
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

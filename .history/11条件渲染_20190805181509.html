@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件渲染</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <!-- v-if：用于条件性的渲染内容，该指令所在的元素只会在指令表达式为真时显示渲染 -->
+    <div id="toggle">
+        <h1 v-if="awesome">Vue is awesome!</h1>
+        <!-- 使用v-else指令（无参）添加一个else块 -->
+        <h1 v-else>oh, no😁</h1>
+        <!-- 将v-if应用在元素<template>上时，最终渲染结果将不包含模板元素 -->
+        <template v-if="multiToggle">
+            <h1>tittle</h1>
+            <p>paragraph 1</p>
+            <p>paragraph 2</p>
+        </template>
+
+        <div v-if="nowRandom > 0.7">
+            随机数值>0.7: {{ nowRandom }}
+        </div>
+        <div v-else-if="nowRandom > 0.5">
+            随机数值>0.5: {{ nowRandom }}
+        </div>
+        <!-- v-else必须紧跟在带v-if或v-else-if元素的后面，否则将不被识别 -->
+        <div v-else>
+            随机数值<=0.5: {{ nowRandom }} 
+        </div> 
+        <!-- vue会尽可能的高效渲染元素，即会复用已有元素而不是彻底从头渲染（例如：切换登录方式）
+        （会保留相同元素的模板元素，但会更改元素内部的内容）
+        下例中两个模板使用了相同的一些元素（当有其他元素时，也会复用他们共同的元素）
+        且只会复用对等的同种元素，多/少的将会被重新渲染 -->
+        <template v-if="loginType === 'username'">
+            <label>Username: </label>
+            <!-- 给元素添加具有唯一值的key属性之后，则表示两个元素独立，将不被复用 -->
+            <input placeholder="Enter your username: ">
+            <input placeholder="不会复用的元素1" key="not-use-first">
+        </template>
+        <template v-else-if="loginType === 'email'">
+            <label>Email: </label>
+            <input placeholder="Enter your email: ">
+            <input placeholder="不会复用的元素2" key="not-use-second">
+        </template>
+        <button v-on:click="toggleLoginType">切换登录方式</button>
+
+        <h1 v-show="ok">使用v-show始终渲染元素</h1>
+    </div>
+
+        <script>
+            var toggleVM = new Vue({
+                el: "#toggle",
+                data: {
+                    awesome: "",
+                    "multiToggle": true,
+                    loginType: 'username',
+                    nowRandom: Math.random(),
+                    ok: false
+                },
+                methods: {
+                    toggleLoginType: function () {
+                        if (this.loginType === 'username') {
+                            this.loginType = 'email';
+                            return;
+                        }
+                        this.loginType = 'username';
+                    }
+                }
+            });
+        </script>
+</body>
+
+</html>

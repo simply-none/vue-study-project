@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在v-for中使用对象</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <!-- 使用v-for遍历对象的属性 -->
+    <div id="v-for-object">
+        <ul>
+            <li v-for="value in obj">
+                {{ value }}
+            </li>
+        </ul>
+    </div>
+
+
+    <script>
+        var demo = new Vue({
+            el: "#v-for-object",
+            data: {
+                items: {
+                    "姓名": "Aspirate Qiu",
+                    "性别": "male",
+                    "年龄": 23
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

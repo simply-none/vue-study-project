@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件渲染</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <!-- v-if：用于条件性的渲染内容，该指令所在的元素只会在指令表达式为真时显示渲染 -->
+    <div id="toggle">
+        <h1 v-if="awesome">Vue is awesome!</h1>
+        <!-- 使用v-else指令（无参）添加一个else块 -->
+        <h1 v-else>oh, no😁</h1>
+        <!-- 将v-if应用在元素<template>上时，最终渲染结果将不包含模板元素 -->
+        <template v-if="multiToggle">
+            <h1>tittle</h1>
+            <p>paragraph 1</p>
+            <p>paragraph 2</p>
+        </template>
+
+        <div v-if="nowRandom > 0.7">
+            随机数值>0.7: {{ nowRandom }}
+        </div>
+        <div v-else-if="nowRandom > 0.5">
+            随机数值>0.5: {{ nowRandom }}
+        </div>
+        <!-- v-else必须紧跟在带v-if或v-else-if元素的后面，否则将不被识别 -->
+        <div v-else>
+            随机数值<=0.5: {{ nowRandom }} </div> <!--
+                Vueäźĺ°˝ĺŻč˝éŤćć¸˛ćĺç´ ďźĺłćĄäťśćšĺćśäźĺ¤ç¨ĺˇ˛ćĺç´ ďźčä¸äźäťĺ¤´ć¸˛ćďźĺ˝ťĺşć¸é¤ĺćć°ćŽďźć°ĺťşďźďźäžĺŚďźĺć˘çťĺ˝ćšĺźďź
+                ä¸¤čĺąĺçć ç­žĺ°äźćç¨ďźčĽć ç­žä¸ĺŻšç§°ďźĺ¤ĺŻšä¸ďźĺ¤ĺŻšĺ¤ç­ďźďźĺĺŞĺ¤ç¨ç­éçć ç­ž
+                -->
+                <template v-if="loginType === 'username'">
+                    <label>Username: </label>
+                    <input placeholder="Enter your username: ">
+                </template>
+                <template v-else-if="loginType === 'email'">
+                    <label>Email: </label>
+                    <input placeholder="Enter your email: ">
+                </template>
+                <button v-on:click="toggleLoginType">ĺć˘çťĺ˝ćšĺź</button>
+        </div>
+
+        <script>
+            var toggleVM = new Vue({
+                el: "#toggle",
+                data: {
+                    awesome: "",
+                    "multiToggle": true,
+                    loginType: 'username',
+                    nowRandom: Math.random()
+                },
+                methods: {
+                    toggleLoginType: function () {
+                        if (this.loginType === 'username') {
+                            this.loginType = 'email';
+                            return;
+                        }
+                        this.loginType = 'username';
+                    }
+                }
+            });
+        </script>
+</body>
+
+</html>
