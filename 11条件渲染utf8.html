@@ -30,32 +30,28 @@
         </div>
         <!-- v-else必须紧跟在带v-if或v-else-if元素的后面，否则将不被识别 -->
         <div v-else>
-            随机数值<=0.5: {{ nowRandom }} 
-        </div> 
-        <!-- vue会尽可能的高效渲染元素，即会复用已有元素而不是彻底从头渲染（例如：切换登录方式）
-        （会保留相同元素的模板元素，但会更改元素内部的内容）
-        下例中两个模板使用了相同的一些元素（当有其他元素时，也会复用他们共同的元素）
-        且只会复用对等的同种元素，多/少的将会被重新渲染 -->
-        <template v-if="loginType === 'username'">
-            <label>Username: </label>
-            <!-- 给元素添加具有唯一值的key属性之后，则表示两个元素独立，将不被复用 -->
-            <input placeholder="Enter your username: ">
-            <input placeholder="不会复用的元素1" key="not-use-first">
-        </template>
-        <template v-else-if="loginType === 'email'">
-            <label>Email: </label>
-            <input placeholder="Enter your email: ">
-            <input placeholder="不会复用的元素2" key="not-use-second">
-        </template>
-        <button v-on:click="toggleLoginType">切换登录方式</button>
+            随机数值<=0.5: {{ nowRandom }} </div> <!-- vue会尽可能的高效渲染元素，即会复用已有元素而不是彻底从头渲染（例如：切换登录方式）
+                （会保留相同元素的模板元素，但会更改元素内部的内容） 下例中两个模板使用了相同的一些元素（当有其他元素时，也会复用他们共同的元素） 且只会复用对等的同种元素，多/少的将会被重新渲染 -->
+                <template v-if="loginType === 'username'">
+                    <label>Username: </label>
+                    <!-- 给元素添加具有唯一值的key属性之后，则表示两个元素独立，将不被复用 -->
+                    <input placeholder="Enter your username: ">
+                    <input placeholder="不会复用的元素1" key="not-use-first">
+                </template>
+                <template v-else-if="loginType === 'email'">
+                    <label>Email: </label>
+                    <input placeholder="Enter your email: ">
+                    <input placeholder="不会复用的元素2" key="not-use-second">
+                </template>
+                <button v-on:click="toggleLoginType">切换登录方式</button>
 
-        <!-- v-show:会始终渲染元素（元素始终存在），v-show的功能是切换css的display的属性（是否隐藏） -->
-        <!-- v-show不支持模板元素<template>和v-else -->
-        <h1 v-show="ok">使用v-show始终渲染元素</h1>
-        <!-- v-if有更高的切换开销，v-show有更高的初始渲染开销 -->
-        <!-- 频繁切换时使用v-show，运行时条件很少改变使用v-if -->
-        <!-- 不推荐v-if和v-for同时使用，v-for优先级比v-if高 -->
-    </div>
+                <!-- v-show:会始终渲染元素（元素始终存在），v-show的功能是切换css的display的属性（是否隐藏） -->
+                <!-- v-show不支持模板元素<template>和v-else -->
+                <h1 v-show="ok">使用v-show始终渲染元素</h1>
+                <!-- v-if有更高的切换开销，v-show有更高的初始渲染开销 -->
+                <!-- 频繁切换时使用v-show，运行时条件很少改变使用v-if -->
+                <!-- 不推荐v-if和v-for同时使用，v-for优先级比v-if高 -->
+        </div>
 
         <script>
             var vm = new Vue({
