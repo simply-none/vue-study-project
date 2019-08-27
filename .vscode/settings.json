@@ -1,0 +1,9 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.fontSize": 16,
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#5E0720",
+        "titleBar.activeBackground": "#84092D",
+        "titleBar.activeForeground": "#FFFCFC"
+    }
+}
